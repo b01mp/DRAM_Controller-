@@ -1,33 +1,39 @@
-// DRIVER //
 class apb_driver;
+//  virtual apb_if.master vif;
     virtual apb_if.master vif;
     mailbox gen2drv;
     bit verbose = 1;
+    apb_transaction txn;
+    event drv_done;
 
-    function new(virtual apb_if.master vif, mailbox gen2drv);
+    function new(virtual apb_if vif, mailbox gen2drv);
         this.vif = vif;
         this.gen2drv = gen2drv;
+        txn= new(); 
     endfunction
 
 
     // blocking run task
     task run();
-        apb_transaction txn;
+        if(verbose)begin
+                $display("[DRIVER] Driving." );
+        end
 
         forever begin
             gen2drv.get(txn);
 
             if(verbose)begin
-                $display("[DRIVER] Driving: %s Addr=0x%0h", txn.pwrite ? "WRITE" : "READ", txn.paddr);
+                //$display("[DRIVER] Driving. Addr=0x%0h", txn.pwrite ? "WRITE" : "READ", txn.paddr);
+		$display("[DRIVER] Driving. Addr=0x%0h at time=%0t", txn.paddr, $time);
             end
 
-            drive(txn)
+            drive(txn);
         end
     endtask
 
     // actual APB Driving Logic
     task drive(apb_transaction txn);
-        @(posedfe vif.pclk);
+        @(posedge vif.pclk);
 
         // Setup Phase
         vif.cb.paddr <= txn.paddr;
@@ -51,11 +57,12 @@ class apb_driver;
         txn.pslverr = vif.cb.pslverr;
 
         if(verbose)begin
-            $display("[DRIVER] Done: Addr=0x%0h %s %s=0x0%h",
+            $display("[DRIVER] Done: Addr=0x%0h %s %s=0x0%h time=%0t",
                         txn.paddr,
                         (txn.pwrite?"WRITE":"READ"),
                         (txn.pwrite?"WDATA":"RDATA"),
-                        (txn.pwrite? txn.pwdata:txn.prdata));
+                        (txn.pwrite? txn.pwdata:txn.prdata),
+			$time);
         end
 
         // Reset bus signals
@@ -64,5 +71,7 @@ class apb_driver;
         vif.cb.paddr   <= 0;
         vif.cb.pwrite  <= 0;
         vif.cb.pwdata  <= 0;
+
+        -> drv_done;
     endtask
 endclass

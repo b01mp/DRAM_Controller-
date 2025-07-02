@@ -1,6 +1,5 @@
-// TRANSACTION OBJECT //
 class apb_transaction;
-
+    
     // Transaction fields
     rand bit        pwrite;   // 1 = write, 0 = read
     rand bit [15:0] paddr;    // Address
@@ -9,7 +8,7 @@ class apb_transaction;
          bit        pslverr;  // Optional error flag
 
     // Constructor
-    function new(string name = "apb_transaction");
+    function new();
     endfunction
 
     // Print method for debug

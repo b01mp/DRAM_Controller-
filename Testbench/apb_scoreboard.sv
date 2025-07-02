@@ -1,7 +1,5 @@
-// Scoreboard //
 class apb_scoreboard;
-    
-    
+
     mailbox mon2scb;    // mailbox to receive observed transactions from monitor
 
     bit[15:0] mem_model[*]; // 16-bit data
@@ -12,16 +10,16 @@ class apb_scoreboard;
 
     // Constructor
     function new(mailbox mon2scb);
-        this.mon2scb = mon2scb
+        this.mon2scb = mon2scb;
     endfunction
     
     // main task
-    task run
-        apb_transaction txn;
+    task run();
+        apb_transaction txn = new();
 
         forever begin
             //wait for a transaction from the monitor
-            mon2scb.get txn;
+            mon2scb.get(txn);
 
             if (txn.pwrite) begin
                 //write transaction
@@ -36,7 +34,7 @@ class apb_scoreboard;
                 bit [15:0] expected;
 
                 // default expected value if not written before
-                expected = mem_model.exists(txn.paddr) ? mem_model[txn.paddr] : '0;
+                expected = mem_model.exists(txn.paddr) ? mem_model[txn.paddr] : 0;
 
                 if(verbose)begin
                     $display("[SCOREBOARD] READ Addr=0x%0h Expected=0x%0h Got=0x%0h",

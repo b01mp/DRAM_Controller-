@@ -1,5 +1,7 @@
-// INTERFACE //
-interface apb_if (
+// INTERFACE
+`timescale 1ns/1ps 
+
+interface apb_if(
     input logic pclk,
     input logic preset
 );
@@ -20,6 +22,7 @@ interface apb_if (
         output psel, penable, pwrite, paddr, pwdata;
     endclocking
 
+
     modport master (
         //the master will be used by the driver. 
         // driver "writes" to the output variables that is the psel, penable, pwrite, paddr, pwdata,
@@ -27,7 +30,8 @@ interface apb_if (
 
         input  pclk, preset,
         output psel, penable, pwrite, paddr, pwdata,
-        input  prdata, pready, pslverr
+        input  prdata, pready, pslverr,
+	clocking cb
     );
 
     modport monitor (
@@ -36,15 +40,15 @@ interface apb_if (
 
         input  pclk, preset,
         input  psel, penable, pwrite, paddr, pwdata,
-        input  prdata, pready, pslverr
+        input  prdata, pready, pslverr,
+	clocking cb
     );
 
     modport dut (
         // this is used for the DUT
         // input is to read to the dut and output is to write to the dut
-
-
         input  pclk, preset, psel, penable, pwrite, paddr, pwdata,
-        output prdata, pready, pslverr
+        output prdata, pready, pslverr,
+	clocking cb
     );
 endinterface
