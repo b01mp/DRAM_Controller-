@@ -96,10 +96,23 @@ always_ff@(posedge pclk or posedge preset)begin
                                             sdr_CKE <= #tDLY 1'b1;
                                             sdr_BA <= #tDLY paddr[BA_MSB:BA_LSB];//bank
                                             sdr_A <= #tDLY {
-                                                            paddr[CA_MSB],
-                                                            1'b1,
-                                                            paddr[CA_MSB-1:CA_LSB],
-                                                            2'b00};
+                                                                1'b1,                    // A10 = 1 (auto-precharge enable)
+                                                                1'b0,                    // A9 = 0 (don't care)
+                                                                2'b00,                   // A8,A7 = 00 (don't care)
+                                                                paddr[CA_MSB:CA_LSB]     // 7 bit column address
+                                                            };
+                                        end
+
+                            c_WRITEA:   begin
+                                            sdr_COMMAND <= #tDLY WRITE;
+                                            sdr_CKE <= #tDLY 1'b1;
+                                            sdr_BA  <= #tDLY sys_A[BA_MSB:BA_LSB];
+                                            sdr_A <= #tDLY {
+                                                                1'b1,                    // A10 = 1 (auto-precharge enable)
+                                                                1'b0,                    // A9 = 0 (don't care)
+                                                                2'b00,                   // A8,A7 = 00 (don't care)
+                                                                paddr[CA_MSB:CA_LSB]     // 7 bit column address
+                                                            };
                                         end
                             c_AR:       begin
                                             sdr_COMMAND <= #tDLY AUTO_REFRESH;

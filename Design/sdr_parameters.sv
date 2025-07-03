@@ -31,8 +31,8 @@ parameter Length_8          = 3'b011;
 * Mode register setting
 ****************************/
 
-parameter MR_Write_Burst_Mode =    Programmed_Length;
-                                // Single_Access;
+parameter MR_Write_Burst_Mode = // Programmed_Length;
+                                Single_Access;
 
 parameter MR_Operation_Mode   =    Standard;
 
@@ -60,6 +60,8 @@ parameter MR_Burst_Length     =  Length_1;
 // Column :                                       CA_MSB <--> CA_LSB
 //
 
+/*
+REFERENCE DESIGN CONFIG
 parameter RA_MSB = 22;
 parameter RA_LSB = 11;
 
@@ -71,8 +73,20 @@ parameter CA_LSB =  0;
 
 parameter SDR_BA_WIDTH =  2; // BA0,BA1
 parameter SDR_A_WIDTH  = 12; // A0-A11
+*/
 
+// MY DESIGN CONFIGS
+parameter RA_MSB = 15;
+parameter RA_LSB = 9 ;
 
+parameter BA_MSB = 8;
+parameter BA_LSB = 7;
+
+parameter CA_MSB =  6;
+parameter CA_LSB =  0;
+
+parameter SDR_BA_WIDTH =  2; // BA0,BA1
+parameter SDR_A_WIDTH  = 12; // A0-A11
 
 /****************************
 * SDRAM AC timing spec
