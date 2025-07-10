@@ -1,5 +1,5 @@
 // INTERFACE
-`timescale 1ns/1ps 
+`timescale 1ns/100ps 
 
 interface apb_if(
     input logic pclk,
@@ -40,13 +40,15 @@ interface apb_if(
 
         input  pclk, preset,
         input  psel, penable, pwrite, paddr, pwdata,
-        input  prdata, pready, pslverr,
-	clocking cb
+        input  prdata, pready, pslverr
+	//clocking cb
     );
 
     modport dut (
         // this is used for the DUT
         // input is to read to the dut and output is to write to the dut
+
+
         input  pclk, preset, psel, penable, pwrite, paddr, pwdata,
         output prdata, pready, pslverr,
 	clocking cb

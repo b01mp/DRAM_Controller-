@@ -1,5 +1,7 @@
 `timescale 1ns/ 100ps
 
+import sdr_parameters::*;
+
 module sdr_ctrl_top(
     input logic pclk,
     input logic preset,
@@ -11,7 +13,7 @@ module sdr_ctrl_top(
     output logic [15:0] prdata,
     output logic [15:0] pready,
 
-    output logic [15:0] sdr_D,
+    inout logic [15:0] sdr_D,
     output logic [15:0] sdr_A,
     output logic [1:0]  sdr_BA,
     output logic sdr_CKE,
@@ -22,7 +24,7 @@ module sdr_ctrl_top(
     output logic sdr_DQM
 );
 
-`include "sdr_parameters.sv"
+//`include "sdr_parameters.sv"
 
 wire [3:0] iState;
 wire [3:0] cState;
@@ -38,7 +40,8 @@ sdr_ctrl_main d1(
 
     .iState(iState),
     .cState(cState),
-    .clkCNT(clkCNT)
+    .clkCNT(clkCNT),
+    .pready(pready)
 );
 
 sdr_ctrl_sig d2(
@@ -48,7 +51,6 @@ sdr_ctrl_sig d2(
 
     .iState(iState),
     .cState(cState),
-    .clkCNT(clkCNT),
 
     .sdr_CKE(sdr_CKE),
     .sdr_CSn(sdr_CSn),
@@ -59,7 +61,7 @@ sdr_ctrl_sig d2(
     .sdr_A(sdr_A)
 );
 
-sdr_ctrl_top d3(
+sdr_ctrl_data d3(
     .pclk(pclk),
     .preset(preset),
     .cState(cState),
@@ -67,7 +69,18 @@ sdr_ctrl_top d3(
 
     .pwdata(pwdata),
     .prdata(prdata),
-    .sdr_DQ(sdr_DQ)
+    .sdr_DQ(sdr_D)
 );
+
+always_ff@(posedge pclk) begin
+    if (!preset) begin
+        $display("[%0t][APB] iState=%s, cState=%s, clkCNT=%0d, pready=%0d, penable=%0d, pwrite=%0d, paddr=0x%0h, pwdata=0x%0h, prdata=0x%0h",
+         $time, getIStateName(iState), getCStateName(cState), clkCNT,
+         pready, penable, pwrite, paddr, pwdata, prdata);
+
+        $display("[%0t][SDR] sdr_WEn=%0d,sdr_A=0x%0h, sdr_D  = 0x%0h",
+                    $time,sdr_WEn,sdr_A,sdr_D);
+    end
+end
 
 endmodule

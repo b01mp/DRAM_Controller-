@@ -1,6 +1,8 @@
 `timescale 1ns/100ps
 
-`include "sdr_paramenters.sv"
+import sdr_parameters::*;
+
+//`include "sdr_parameters.sv"
 
 module sdr_ctrl_sig(
     input logic                 pclk,
@@ -18,17 +20,17 @@ module sdr_ctrl_sig(
     output logic [SDR_A_WIDTH-1:0]  sdr_A
 );
 
-init_state_t iState;
-cmd_state_t cState;
+//init_state_t iState;
+//cmd_state_t cState;
 
 logic [3:0] sdr_COMMAND;
-assign {sdr_CSn, sdr_RASn, sdr_CASn, sdr_WEn} = sdr_cmd;
+assign {sdr_CSn, sdr_RASn, sdr_CASn, sdr_WEn} = sdr_COMMAND;
 
 
 always_ff@(posedge pclk or posedge preset)begin
     if(preset)begin
         sdr_COMMAND <= #tDLY INHIBIT;
-        sdr_CKE <= #tDLY;
+        sdr_CKE <= #tDLY 1'b0;
         sdr_BA <= #tDLY {SDR_BA_WIDTH{1'b1}};
         sdr_A <= #tDLY {SDR_A_WIDTH{1'b1}};
     end else begin
@@ -89,7 +91,7 @@ always_ff@(posedge pclk or posedge preset)begin
                                             sdr_COMMAND <= #tDLY ACTIVE;
                                             sdr_CKE <= #tDLY 1'b1;
                                             sdr_BA  <= #tDLY paddr[BA_MSB:BA_LSB];//bank
-                                            sdr_A   <= #tDLY paddr[RA_MSB:RA_LSB];//row
+                                            sdr_A   <= #tDLY {5'b0 ,paddr[RA_MSB:RA_LSB]};//row
                                         end
                             c_READA:    begin
                                             sdr_COMMAND <= #tDLY READ;
@@ -106,7 +108,7 @@ always_ff@(posedge pclk or posedge preset)begin
                             c_WRITEA:   begin
                                             sdr_COMMAND <= #tDLY WRITE;
                                             sdr_CKE <= #tDLY 1'b1;
-                                            sdr_BA  <= #tDLY sys_A[BA_MSB:BA_LSB];
+                                            sdr_BA  <= #tDLY paddr[BA_MSB:BA_LSB];
                                             sdr_A <= #tDLY {
                                                                 1'b1,                    // A10 = 1 (auto-precharge enable)
                                                                 1'b0,                    // A9 = 0 (don't care)
@@ -127,6 +129,7 @@ always_ff@(posedge pclk or posedge preset)begin
                                             sdr_A <= #tDLY {SDR_A_WIDTH{1'b1}};
                                         end
                         endcase
+                        $display("[%0t][SIGNAL] sdr_A = %0h",$time, sdr_A);
                     end
             default:begin
                         sdr_COMMAND <= #tDLY NOP;

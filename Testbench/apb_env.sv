@@ -9,6 +9,7 @@ class apb_env;
 	
 	mailbox gen2drv = new(1);
 	mailbox mon2scb = new(1);
+	event drv_done;
 
 	apb_generator gen;
 	apb_driver drv;
@@ -18,8 +19,8 @@ class apb_env;
 	function new(virtual apb_if vif);
 		// gen2drv = new();
 		// mon2scb = new();
-		gen = new(gen2drv);
-		drv = new(vif.master, gen2drv);
+		gen = new(gen2drv, drv_done);
+		drv = new(vif.master, gen2drv, drv_done);
 		mon = new(vif.monitor, mon2scb);
 		scb = new(mon2scb);
 
@@ -28,10 +29,11 @@ class apb_env;
 
 	task run();
 		fork
+			$display("[ENV]***************Starting Environment! TIME: %0t****************", $time);
 			gen.run();
 			drv.run();
 			mon.run();
 			scb.run();	
-		join_none
+		join
 	endtask
 endclass

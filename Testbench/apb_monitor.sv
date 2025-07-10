@@ -20,23 +20,23 @@ class apb_monitor;
         forever begin
             //wait for valid transfer throught the apb
             @(posedge vif.pclk);
-            if (vif.cb.psel && vif.cb.penable && vif.cb.pready) begin
+            if (vif.psel && /*vif.penable && */vif.pready) begin
                 txn = new();
 
                 // sample the values at the correct phase
-                txn.paddr  = vif.cb.paddr;
-                txn.pwrite = vif.cb.pwrite;
-                txn.pwdata = vif.cb.pwdata;
-                txn.prdata = vif.cb.prdata;
+                txn.paddr  = vif.paddr;
+                txn.pwrite = vif.pwrite;
+                txn.pwdata = vif.pwdata;
+                txn.prdata = vif.prdata;
 
                 if(verbose) begin
-			if(txn.pwrite)begin
-				$display("[MONITOR] Observed: WRITE Addr=0x%0h WDATA=0x%0h time: 0%t",
-				            txn.paddr, txn.pwdata, $time);
-			end else begin
-				$display("[MONITOR] Observed READ Addr=0x%0h RDATA=0x%0h time: 0%t",
-				            txn.paddr, txn.prdata, $time);
-			end
+                    if(txn.pwrite)begin
+                        // $display("[%0t][MONITOR] Observed: WRITE Addr=0x%0h WDATA=0x%0h",
+                        //             $time,txn.paddr, txn.pwdata);
+                    end else begin
+                        // $display("[%0t][MONITOR] Observed READ Addr=0x%0h RDATA=0x%0h",
+                        //             $time,txn.paddr, txn.prdata);
+                    end
                 end
 
                 mon2scb.put(txn);  //send the transaction to the scoreboard

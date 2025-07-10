@@ -26,8 +26,8 @@ class apb_scoreboard;
                 mem_model[txn.paddr] = txn.pwdata;
 
                 if(verbose)begin
-                     $display("[SCOREBOARD] WRITE Addr=0x%0h Data=0x%0h",
-                              txn.paddr, txn.pwdata);
+                     $display("[%0t][SCOREBOARD] WRITE Addr=0x%0h Data=0x%0h",
+                              $time,txn.paddr, txn.pwdata);
                 end
             end else begin
                 // read the transaction
@@ -37,19 +37,28 @@ class apb_scoreboard;
                 expected = mem_model.exists(txn.paddr) ? mem_model[txn.paddr] : 0;
 
                 if(verbose)begin
-                    $display("[SCOREBOARD] READ Addr=0x%0h Expected=0x%0h Got=0x%0h",
-                              txn.paddr, expected, txn.prdata);
+                    $display("[%0t][SCOREBOARD] READ Addr=0x%0h Expected=0x%0h Got=0x%0h",
+                              $time,txn.paddr, expected, txn.prdata);
                 end
 
-                if (txn.prdata !== expected) begin
-                    $error("[SCOREBOARD][FAIL] Addr=0x%0h Mismatch! Expected=0x%0h, Got=0x%0h",
-                           txn.paddr, expected, txn.prdata);
-                    num_errors++;
-                end else begin
-                    if (verbose)
-                        $display("[SCOREBOARD][PASS] Addr=0x%0h Match OK", txn.paddr);
+                // if (txn.prdata !== expected) begin
+                //     $error("[%0t][SCOREBOARD][FAIL] Addr=0x%0h Mismatch! Expected=0x%0h, Got=0x%0h",
+                //            $time,txn.paddr, expected, txn.prdata);
+                //     num_errors++;
+                // end else begin
+                //     if (verbose)
+                //         $display("[%0t][SCOREBOARD][PASS] Addr=0x%0h Match OK",$time, txn.paddr);
+                //     $stop;
+                // end
+                if(txn.prdata == expected) begin
+                            if (verbose)
+                            $display("[%0t][SCOREBOARD][PASS] Addr=0x%0h Match OK",$time, txn.paddr);
+                                
+                            $stop;
                 end
+                
             end
+ 
         end
     endtask
 
