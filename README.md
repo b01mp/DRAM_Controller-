@@ -104,31 +104,7 @@ DRAM_Controller-/
 └── README.md                      # Project documentation
 ```
 
-## Usage Instructions
 
-### 1. Setup Environment
-```bash
-cd new_bhavesh
-vivado new_bhavesh.xpr
-```
-
-### 2. Run Simulation
-```bash
-# In Vivado Tcl console
-launch_simulation
-run all
-```
-
-### 3. Configuration Options
-```systemverilog
-// FIFO depth (in sdr_ctrl_top.sv)
-parameter depth = 8;  // Adjust based on requirements
-
-// SDRAM timing (in sdr_parameters.sv)
-parameter tCK = 20;   // Clock period in ns
-parameter tRCD = 15;  // Row to Column Delay
-parameter tRP = 15;   // Row Precharge time
-```
 
 ## Example Operation Sequence: FIFO Command Buffering in Action
 
