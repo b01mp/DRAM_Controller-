@@ -110,24 +110,24 @@ assign sdr_DQ =
 always @(posedge sdr_CK)
   case ({sdr_CSn,sdr_RASn,sdr_CASn,sdr_WEn})
     4'b0000: begin
-               $display($time,"ns : Load Mode Register 0x%h",sdr_A);
+               $display($time,"sdram_module: Load Mode Register 0x%h",sdr_A);
                casLatency = sdr_A[6:4];
                burstLength = (sdr_A[2:0] == 3'b000) ? 1 :
                              (sdr_A[2:0] == 3'b001) ? 2 :
                              (sdr_A[2:0] == 3'b010) ? 4 :
                              (sdr_A[2:0] == 3'b011) ? 8 : 0;
                $display($time,
-                     "ns : mode: CAS Latency=0x%h, Burst Length=0x%h",
+                     "sdram_module: mode: CAS Latency=0x%h, Burst Length=0x%h",
                      casLatency, burstLength);
              end
-    4'b0001: $display($time,"ns : Auto Refresh Command");
-    4'b0010: $display($time,"ns : Precharge Command");
+    4'b0001: $display($time,"sdram_module: Auto Refresh Command");
+    4'b0010: $display($time,"sdram_module: Precharge Command");
     4'b0011: begin
-               $display($time,"ns : Activate Command");
+               $display($time,"sdram_module: Activate Command");
                row = sdr_A;
              end
     4'b0100: begin
-               $display($time,"ns : Write Command");
+               $display($time,"sdram_module: Write Command");
                column = (Data_Width ==  4) ? {sdr_A[11],sdr_A[9:0]} :
                         (Data_Width ==  8) ? {sdr_A[9:0]} :
                         (Data_Width == 16) ? {sdr_A[8:0]} : 0;
@@ -136,12 +136,12 @@ always @(posedge sdr_CK)
                counter = burstLength;
                Memory[{row,column,bank}] = sdr_DQ;
                $display($time,
-                     "ns :write: Bank=0x%h, Row=0x%h, Column=0x%h, Data=0x%h",
+                     "sdram_module:write: Bank=0x%h, Row=0x%h, Column=0x%h, Data=0x%h",
                      bank, row, column, sdr_DQ);
 				write_count = write_count +1;
              end
     4'b0101: begin
-               $display($time,"ns : Read Command");
+               $display($time,"sdram_module: Read Command");
                column = (Data_Width ==  4) ? {sdr_A[11],sdr_A[9:0]} :
                         (Data_Width ==  8) ? {sdr_A[9:0]} :
                         (Data_Width == 16) ? {sdr_A[8:0]} : 0;
@@ -149,9 +149,9 @@ always @(posedge sdr_CK)
                counter = {1'b0,casLatency} - 1;
                latency = 1;
              end
-    4'b0110: $display($time,"ns : Burst Terminate");
+    4'b0110: $display($time,"sdram_module: Burst Terminate");
     4'b0111: begin
-               $display($time,"ns : Nop Command");
+               $display($time,"sdram_module: Nop Command");
                if ((write == 1) && (counter != 0))
                  begin
                    counter = counter - 1;
@@ -162,7 +162,7 @@ always @(posedge sdr_CK)
                        Memory[{row,column,bank}] = sdr_DQ;
 					   write_count = write_count +1;
                        $display($time,
-                         "ns :write: Bank=0x%h, Row=0x%h, Column=0x%h, Data=0x%h",
+                         "sdram_module:write: Bank=0x%h, Row=0x%h, Column=0x%h, Data=0x%h",
                          bank, row, column, sdr_DQ);
                      end
                  end
@@ -181,7 +181,7 @@ always @(posedge sdr_CK)
 					   read_count = read_count +1;
 					   Memory_read[{row,column,bank}] = dataOut;
                        $display($time,
-                         "ns : read: Bank=0x%h, Row=0x%h, Column=0x%h, Data=0x%h",
+                         "sdram_module: read: Bank=0x%h, Row=0x%h, Column=0x%h, Data=0x%h",
                          bank, row, column, dataOut);
 						 
                      end
@@ -199,7 +199,7 @@ always @(posedge sdr_CK)
 					   Memory_read[{row,column,bank}] = dataOut;
                        enableSdrDQ = 1;
                        $display($time,
-                         "ns : read: Bank=0x%h, Row=0x%h, Column=0x%h, Data=0x%h",
+                         "sdram_module: read: Bank=0x%h, Row=0x%h, Column=0x%h, Data=0x%h",
                          bank, row, column, dataOut);
                      end
                  end
@@ -215,7 +215,7 @@ if ((read_count == write_count) && (write_count != 0))
 	
 	for (i = 0; i < read_count; i = i+1)
 		begin
-      $display("Memory= %0h , Memory_read = %0h", Memory[{row,column,bank}], Memory_read[{row,column,bank}]);
+      $display($time,"sdram_module: Memory= %0h , Memory_read = %0h", Memory[{row,column,bank}], Memory_read[{row,column,bank}]);
 		if (Memory[{row,column,bank}] == Memory_read[{row,column,bank}])
 		begin 
 			flag=1 & flag;
@@ -225,13 +225,13 @@ if ((read_count == write_count) && (write_count != 0))
 			flag=0 & flag;
 		end
 		end
-		$display("------------------------------------------------------------");
+		$display($time,"sdram_module: ------------------------------------------------------------");
 	if (flag)
-		$display("----------------------TEST PASS-----------------------------");
+		$display($time,"sdram_module: ----------------------TEST PASS-----------------------------");
 	else
-		$display("----------------------TEST FAIL-----------------------------");
+		$display($time,"sdram_module: ----------------------TEST FAIL-----------------------------");
 		
-		$display("------------------------------------------------------------");
+		$display($time,"sdram_module: ------------------------------------------------------------");
 		
 		
 	// $stop;
