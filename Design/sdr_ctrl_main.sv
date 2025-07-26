@@ -11,7 +11,7 @@ module sdr_ctrl_main(
     output logic [3:0] iState,
     output logic [3:0] cState,
     output logic [3:0] clkCNT,
-    output logic       pready
+    output logic       cmd_done
 );
 
 // Parameters
@@ -51,10 +51,9 @@ logic 	     NOP_delay_counter;
 always_ff @(posedge pclk or posedge preset) begin
     if(preset)begin
         iState <= #tDLY i_NOP;
-	    //$display("[MAIN] Inside preset at time: %0t", $time);
+	    $display("[MAIN] Inside preset at time: %0t", $time);
         delay_100US = 0;
         delay_100US_counter = 0;
-        pready = 0;
     end else begin
         case (iState)
             i_NOP:  begin
@@ -62,60 +61,59 @@ always_ff @(posedge pclk or posedge preset) begin
                         if (!delay_100US) begin
                             if (delay_100US_counter < 10)begin
                                 delay_100US_counter <= delay_100US_counter + 1;
-                                //$display("[MAIN] delay counter value: %0d;  delay_100US = %0d ", delay_100US_counter, delay_100US);
+                                $display("[MAIN] delay counter value: %0d;  delay_100US = %0d ", delay_100US_counter, delay_100US);
                                 
                             end else begin
                                 delay_100US <= 1;  // 100us has passed
-                                //$display("[MAIN] 100us delay SATISFIED! %0d cycles ; delay_100US = %0d ,moving on to next state ", delay_100US_counter, delay_100US);
+                                $display("[MAIN] 100us delay SATISFIED! %0d cycles ; delay_100US = %0d ,moving on to next state ", delay_100US_counter, delay_100US);
                             end
                         end
                         else begin //if(delay_100US)begin                    // this signal is HIGH after 100us
-                            //$display("[MAIN] Moving on to PRECHARGE STATE at %0t", $time);
+                            $display("[MAIN] Moving on to PRECHARGE STATE at %0t", $time);
                             iState <= #tDLY i_PRE;
                         end
                     end
 
             i_PRE:  begin
-                        //$display("[MAIN] Inside PRECHARGE State at time: %0t", $time);
+                        $display("[MAIN] Inside PRECHARGE State at time: %0t", $time);
                         iState <= #tDLY (NUM_CLK_tRP == 0)? i_AR1 : i_tRP ;
                     end
             
             i_tRP:  begin
-                        //$display("[MAIN] Inside tRP State at time: %0t", $time);
+                        $display("[MAIN] Inside tRP State at time: %0t", $time);
                         if (`endOf_tRP) iState <= #tDLY i_AR1;
                     end
 
             i_AR1:  begin
-                        //$display("[MAIN] Inside AUTO REFRESH-1 State at time: %0t", $time);
+                        $display("[MAIN] Inside AUTO REFRESH-1 State at time: %0t", $time);
                        iState <= #tDLY (NUM_CLK_tRFC == 0) ? i_AR2 : i_tRFC1;
                     end
             
             i_tRFC1:begin 
-                        //$display("[MAIN] Inside tRFC1 State at time: %0t", $time);
+                        $display("[MAIN] Inside tRFC1 State at time: %0t", $time);
                         if (`endOf_tRFC) iState <= #tDLY i_AR2;
                     end
 
             i_AR2:  begin
-                        //$display("[MAIN] Inside AUTO REFRESH-2 State at time: %0t", $time);
+                        $display("[MAIN] Inside AUTO REFRESH-2 State at time: %0t", $time);
                        iState <= #tDLY (NUM_CLK_tRFC == 0) ? i_MRS : i_tRFC2;
                     end
 
             i_tRFC2:begin
-                        //$display("[MAIN] Inside tRFC2 State at time: %0t", $time);
+                        $display("[MAIN] Inside tRFC2 State at time: %0t", $time);
                         if (`endOf_tRFC) iState <= #tDLY i_MRS;
                     end
             i_MRS:  begin
-                        //$display("[MAIN] Inside MODE REGISTER State at time: %0t", $time);
+                        $display("[MAIN] Inside MODE REGISTER State at time: %0t", $time);
                         iState <= #tDLY (NUM_CLK_tMRD == 0) ? i_ready : i_tMRD;
                     end
             i_tMRD: begin
-                        //$display("[MAIN] Inside tMRD State at time: %0t", $time);
+                        $display("[MAIN] Inside tMRD State at time: %0t", $time);
                         if (`endOf_tMRD) iState <= #tDLY i_ready;
                     end
             i_ready:begin
                         //$display("[MAIN] Inside READY State at time: %0t", $time);
                         iState <= #tDLY i_ready;
-                        pready <= #tDLY 1;
                     end
 
             default:
@@ -162,6 +160,19 @@ always_ff @(posedge pclk or posedge preset) begin
     end
 end
 
+logic [3:0] prev_cState;
+always_ff @(posedge pclk or posedge preset) begin
+    if (preset) begin
+        prev_cState <= 4'd0;
+    end else begin
+        prev_cState <= cState;
+    end
+end
+
+always_comb begin
+    cmd_done = (cState == 4'd0) && (prev_cState != 4'd0);
+end
+
 // CMD FSM //
 always_ff @(posedge pclk or posedge preset) begin
     if(preset)begin
@@ -169,66 +180,70 @@ always_ff @(posedge pclk or posedge preset) begin
     end else begin
         case (cState)
             c_idle: begin
-                        // $display("[CMD] Inside IDLE State at time: %0t", $time);
-                        // $display("[CMD][IDLE] PENABLE = %0d; sys_INIT_DONE = %0d; time = %0t",penable, sys_INIT_DONE, $time);
+                        $display("[CMD] Inside IDLE State at time: %0t", $time);
+                        $display("[CMD][IDLE] PENABLE = %0d; sys_INIT_DONE = %0d; time = %0t",penable, sys_INIT_DONE, $time);
                         if(sys_REF_REQ && sys_INIT_DONE) cState <= #tDLY c_AR;
-                        else if (penable && sys_INIT_DONE) cState <= #tDLY c_ACTIVE;
+                        else if (penable && sys_INIT_DONE) cState <= #tDLY c_latch;
                     end
-
+            c_latch: begin
+                // Latch state: wait one cycle before advancing
+                cState <= #tDLY c_ACTIVE;
+            end
             c_ACTIVE:begin
-                        // $display("[CMD] Inside ACTIVE State at time: %0t", $time);
+                        $display("[CMD] Inside ACTIVE State at time: %0t", $time);
+                        $display("[CMD][ACTIVE] pwrite=%0d, current_cmd=%h, is_write=%b", pwrite, /* add current_cmd and is_write as inputs if needed */ 0, 0);
                         if(NUM_CLK_tRCD == 0)begin
-                            // $display("PWRITE: %0d", pwrite);
+                            $display("PWRITE: %0d", pwrite);
                             cState <= #tDLY (pwrite)? c_WRITEA : c_READA;
                         end else
                             cState <= #tDLY c_tRCD; 
                      end
             
             c_tRCD: begin
-                        // $display("[CMD] Inside tRCD State at time: %0t", $time);
+                        $display("[CMD] Inside tRCD State at time: %0t", $time);
                         if(`endOf_tRCD)
                             cState <= #tDLY (pwrite) ? c_WRITEA : c_READA;
                     end
 
             c_READA:begin
-                        // $display("[CMD] Inside READA State at time: %0t", $time);
+                        $display("[CMD] Inside READA State at time: %0t", $time);
                         cState <= #tDLY c_cl;
                     end
 
             c_cl:   begin
-                        // $display("[CMD] Inside c_cl State at time: %0t", $time);
+                        $display("[CMD] Inside c_cl State at time: %0t", $time);
                         if(`endOf_Cas_Latency) cState <= #tDLY c_rdata;
                     end
 
             c_rdata:begin
-                        // $display("[CMD] Inside RDATA State at time: %0t", $time);
+                        $display("[CMD] Inside RDATA State at time: %0t", $time);
                         if(`endOf_Read_Burst) cState <= #tDLY c_idle;
                     end
 
             c_WRITEA:begin
-                        // $display("[CMD] Inside WRITEA State at time: %0t", $time);
+                        $display("[CMD] Inside WRITEA State at time: %0t", $time);
                         
                         cState <= #tDLY c_wdata;
                     end
 
             c_wdata:begin
-                        // $display("[CMD] Inside WDATA State at time: %0t", $time);
+                        $display("[CMD] Inside WDATA State at time: %0t", $time);
                         
                         if (`endOf_Write_Burst) cState <= #tDLY c_tDAL;
                     end
 
             c_tDAL: begin
-                        // $display("[CMD] Inside tDAL State at time: %0t", $time);
+                        $display("[CMD] Inside tDAL State at time: %0t", $time);
                         if (`endOf_tDAL) cState <= #tDLY c_idle;
                     end
 
             c_AR:   begin
-                        // $display("[CMD] Inside AUTO REFRESH State at time: %0t", $time);
+                        $display("[CMD] Inside AUTO REFRESH State at time: %0t", $time);
                         cState <= #tDLY (NUM_CLK_tRFC == 0) ? c_idle : c_tRFC;
                     end
 
             c_tRFC: begin
-                        // $display("[CMD] Inside tRFC State at time: %0t", $time);
+                        $display("[CMD] Inside tRFC State at time: %0t", $time);
                         if (`endOf_tRFC) cState <= #tDLY c_idle;
                     end
 

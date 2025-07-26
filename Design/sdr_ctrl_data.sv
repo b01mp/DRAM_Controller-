@@ -97,20 +97,20 @@ end
 // end
 
 // Additional debug information - WRITE
-// always_ff@(posedge pclk) begin
-//     if (!preset) begin
-//         $display("[%0t][DATA] State=%0d, clkCNT=%0d, enableSdrDQ=%0b, regSysD=0x%0h, sdr_DQ=0x%0h pwdata = 0x%0h", 
-//                  $time, cState, clkCNT, enableSdrDQ, regSysD, sdr_DQ, pwdata);
-//     end
-// end
+ always_ff@(posedge pclk) begin
+     if (!preset) begin
+         $display("[%0t][DATA] State=%0d, clkCNT=%0d, enableSdrDQ=%0b, regSysD=0x%0h, sdr_DQ=0x%0h pwdata = 0x%0h", 
+                  $time, cState, clkCNT, enableSdrDQ, regSysD, sdr_DQ, pwdata);
+     end
+end
 
 // // Additional debug information - READ
-// always_ff@(posedge pclk) begin
-//     if (!preset) begin
-//         $display("[%0t][DATA] State=%0d, clkCNT=%0d, enableSysD=%0b, regSdrDQ=0x%0h, sdr_DQ=0x%0h prdata = 0x%0h", 
-//                  $time, cState, clkCNT, enableSysD, regSdrDQ, sdr_DQ, prdata);
-//     end
-// end
+ always_ff@(posedge pclk) begin
+     if (!preset) begin
+         $display("[%0t][DATA] State=%0d, clkCNT=%0d, enableSysD=%0b, regSdrDQ=0x%0h, sdr_DQ=0x%0h prdata = 0x%0h", 
+                  $time, cState, clkCNT, enableSysD, regSdrDQ, sdr_DQ, prdata);
+     end
+ end
 
 endmodule
 

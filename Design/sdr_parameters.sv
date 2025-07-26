@@ -195,6 +195,7 @@ parameter c_wdata   = 4'd7;
 parameter c_tDAL    = 4'd8;
 parameter c_AR      = 4'd9;
 parameter c_tRFC    = 4'd10;
+parameter c_latch   = 4'd11;
 
 function string getIStateName(input logic [3:0] state);
     case (state)
