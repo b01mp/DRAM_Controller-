@@ -1,0 +1,310 @@
+[TESTBENCH] Initializing signals at time 0
+[TESTBENCH] Signals initialized
+[TESTBENCH] Applying reset at time 0
+[TESTBENCH] Reset released at time 60000
+[TESTBENCH] Waiting for SDRAM initialization to complete...
+[MAIN] Inside NOP State at time: 70000
+[70000][APB] iState=i_NOP, cState=c_idle, clkCNT=x, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[70000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                  90ns : Nop Command
+[MAIN] Inside NOP State at time: 90000
+[90000][APB] iState=i_NOP, cState=c_idle, clkCNT=x, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[90000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 110ns : Nop Command
+[MAIN] Inside NOP State at time: 110000
+[110000][APB] iState=i_NOP, cState=c_idle, clkCNT=x, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[110000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 130ns : Nop Command
+[MAIN] Inside NOP State at time: 130000
+[130000][APB] iState=i_NOP, cState=c_idle, clkCNT=x, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[130000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 150ns : Nop Command
+[MAIN] Inside NOP State at time: 150000
+[150000][APB] iState=i_NOP, cState=c_idle, clkCNT=x, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[150000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 170ns : Nop Command
+[MAIN] Inside NOP State at time: 170000
+[170000][APB] iState=i_NOP, cState=c_idle, clkCNT=x, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[170000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 190ns : Nop Command
+[MAIN] Inside NOP State at time: 190000
+[190000][APB] iState=i_NOP, cState=c_idle, clkCNT=x, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[190000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 210ns : Nop Command
+[MAIN] Inside NOP State at time: 210000
+[210000][APB] iState=i_NOP, cState=c_idle, clkCNT=x, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[210000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 230ns : Nop Command
+[MAIN] Inside NOP State at time: 230000
+[230000][APB] iState=i_NOP, cState=c_idle, clkCNT=x, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[230000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 250ns : Nop Command
+[MAIN] Inside NOP State at time: 250000
+[250000][APB] iState=i_NOP, cState=c_idle, clkCNT=x, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[250000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 270ns : Nop Command
+[MAIN] Inside NOP State at time: 270000
+[270000][APB] iState=i_NOP, cState=c_idle, clkCNT=x, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[270000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 290ns : Nop Command
+[MAIN] Inside NOP State at time: 290000
+[290000][APB] iState=i_NOP, cState=c_idle, clkCNT=x, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[290000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 310ns : Nop Command
+[310000][APB] iState=i_PRE, cState=c_idle, clkCNT=x, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[310000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 330ns : Precharge Command
+[330000][APB] iState=i_AR1, cState=c_idle, clkCNT=0, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[330000][SDR] sdr_WEn=0,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 350ns : Auto Refresh Command
+[350000][APB] iState=i_tRFC1, cState=c_idle, clkCNT=1, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[350000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 370ns : Nop Command
+[370000][APB] iState=i_tRFC1, cState=c_idle, clkCNT=2, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[370000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 390ns : Nop Command
+[390000][APB] iState=i_tRFC1, cState=c_idle, clkCNT=3, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[390000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 410ns : Nop Command
+[410000][APB] iState=i_AR2, cState=c_idle, clkCNT=0, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[410000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 430ns : Auto Refresh Command
+[430000][APB] iState=i_tRFC2, cState=c_idle, clkCNT=1, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[430000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 450ns : Nop Command
+[450000][APB] iState=i_tRFC2, cState=c_idle, clkCNT=2, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[450000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 470ns : Nop Command
+[470000][APB] iState=i_tRFC2, cState=c_idle, clkCNT=3, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[470000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 490ns : Nop Command
+[490000][APB] iState=i_MRS, cState=c_idle, clkCNT=0, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[490000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 510ns : Load Mode Register 0x220
+                 510ns : mode: CAS Latency=0x2, Burst Length=0x1
+[510000][APB] iState=i_tMRD, cState=c_idle, clkCNT=1, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[510000][SDR] sdr_WEn=0,sdr_A=0xz220, sdr_D  = 0xzzzz
+                 530ns : Nop Command
+[530000][APB] iState=i_tMRD, cState=c_idle, clkCNT=2, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[530000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 550ns : Nop Command
+[550000][SIGNAL] sdr_A = fff
+[550000][APB] iState=i_ready, cState=c_idle, clkCNT=0, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[550000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 570ns : Nop Command
+[570000][SIGNAL] sdr_A = fff
+[570000][APB] iState=i_ready, cState=c_idle, clkCNT=0, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[570000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[TESTBENCH] SDRAM initialization complete at time 590000
+[TESTBENCH] **************** Starting Test! ****************
+                 590ns : Nop Command
+[590000][SIGNAL] sdr_A = fff
+[590000][APB] iState=i_ready, cState=c_idle, clkCNT=0, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[590000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[TEST]***************Starting Test! TIME: 600000****************
+[ENV]***************Starting Environment! TIME: 600000****************
+[600000][GENERATOR] Sending WRITE: Addr=0x10 Data=0x1234
+[600000][DRIVER] Driving. Addr=0x10, WRITE WDATA=0x01234
+                 610ns : Nop Command
+[610000][SIGNAL] sdr_A = fff
+[610000][APB] iState=i_ready, cState=c_idle, clkCNT=0, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[610000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 630ns : Nop Command
+[630000][SIGNAL] sdr_A = fff
+[630000][APB] iState=i_ready, cState=c_idle, clkCNT=0, pready=Z, penable=0, pwrite=1, paddr=0x10, pwdata=0x1234, prdata=0xzzzz
+[630000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[630000][SCOREBOARD] WRITE Addr=0x10 Data=0x1234
+                 650ns : Nop Command
+[650000][SIGNAL] sdr_A = fff
+[650000][APB] iState=i_ready, cState=c_idle, clkCNT=0, pready=Z, penable=1, pwrite=1, paddr=0x10, pwdata=0x1234, prdata=0xzzzz
+[650000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[650000][DRIVER] Done: Addr=0x10 WRITE WDATA=0x01234
+[650000][SCOREBOARD] WRITE Addr=0x10 Data=0x1234
+                 670ns : Nop Command
+[670000][SIGNAL] sdr_A = fff
+[670000][APB] iState=i_ready, cState=c_ACTIVE, clkCNT=0, pready=Z, penable=1, pwrite=1, paddr=0x10, pwdata=0x1234, prdata=0xzzzz
+[670000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[670000][SCOREBOARD] WRITE Addr=0x10 Data=0x1234
+                 690ns : Activate Command
+[690000][SIGNAL] sdr_A = 0
+[690000][APB] iState=i_ready, cState=c_WRITEA, clkCNT=0, pready=Z, penable=1, pwrite=1, paddr=0x10, pwdata=0x1234, prdata=0xzzzz
+[690000][SDR] sdr_WEn=1,sdr_A=0xz000, sdr_D  = 0xzzzz
+[690000][SCOREBOARD] WRITE Addr=0x10 Data=0x1234
+                 710ns : Write Command
+                 710ns :write: Bank=0x0, Row=0x00, Column=0x10, Data=0x1234
+[710000][SIGNAL] sdr_A = 410
+[710000][APB] iState=i_ready, cState=c_wdata, clkCNT=1, pready=Z, penable=1, pwrite=1, paddr=0x10, pwdata=0x1234, prdata=0xzzzz
+[710000][SDR] sdr_WEn=0,sdr_A=0xz410, sdr_D  = 0x1234
+[710000][SCOREBOARD] WRITE Addr=0x10 Data=0x1234
+                 730ns : Nop Command
+[730000][SIGNAL] sdr_A = fff
+[730000][APB] iState=i_ready, cState=c_tDAL, clkCNT=0, pready=Z, penable=1, pwrite=1, paddr=0x10, pwdata=0x1234, prdata=0xzzzz
+[730000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[730000] Reset Signals 
+[730000][SCOREBOARD] WRITE Addr=0x10 Data=0x1234
+[730000][GENERATOR] WRITE completed: Addr=0x10 Data=0x1234
+[730000][GENERATOR] Sending READ: Addr=0x10
+[730000][DRIVER] Driving. Addr=0x10,  READ RDATA=0x00000
+                 750ns : Nop Command
+[750000][SIGNAL] sdr_A = fff
+[750000][APB] iState=i_ready, cState=c_idle, clkCNT=1, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[750000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                 770ns : Nop Command
+[770000][SIGNAL] sdr_A = fff
+[770000][APB] iState=i_ready, cState=c_idle, clkCNT=0, pready=Z, penable=0, pwrite=0, paddr=0x10, pwdata=0x0, prdata=0xzzzz
+[770000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[770000][SCOREBOARD] READ Addr=0x10 Expected=0x1234 Got=0x0
+                 790ns : Nop Command
+[790000][SIGNAL] sdr_A = fff
+[790000][APB] iState=i_ready, cState=c_idle, clkCNT=0, pready=Z, penable=1, pwrite=0, paddr=0x10, pwdata=0x0, prdata=0xzzzz
+[790000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[790000][DRIVER] Done: Addr=0x10  READ RDATA=0x00000
+[790000][SCOREBOARD] READ Addr=0x10 Expected=0x1234 Got=0x0
+                 810ns : Nop Command
+[810000][SIGNAL] sdr_A = fff
+[810000][APB] iState=i_ready, cState=c_ACTIVE, clkCNT=0, pready=Z, penable=1, pwrite=0, paddr=0x10, pwdata=0x0, prdata=0xzzzz
+[810000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[810000][SCOREBOARD] READ Addr=0x10 Expected=0x1234 Got=0x0
+                 830ns : Activate Command
+[830000][SIGNAL] sdr_A = 0
+[830000][APB] iState=i_ready, cState=c_READA, clkCNT=0, pready=Z, penable=1, pwrite=0, paddr=0x10, pwdata=0x0, prdata=0xzzzz
+[830000][SDR] sdr_WEn=1,sdr_A=0xz000, sdr_D  = 0xzzzz
+[830000][SCOREBOARD] READ Addr=0x10 Expected=0x1234 Got=0x0
+                 850ns : Read Command
+[850000][SIGNAL] sdr_A = 410
+[850000][APB] iState=i_ready, cState=c_cl, clkCNT=1, pready=Z, penable=1, pwrite=0, paddr=0x10, pwdata=0x0, prdata=0xzzzz
+[850000][SDR] sdr_WEn=1,sdr_A=0xz410, sdr_D  = 0xzzzz
+[850000][SCOREBOARD] READ Addr=0x10 Expected=0x1234 Got=0x0
+                 870ns : Nop Command
+[870000][SIGNAL] sdr_A = fff
+[870000][APB] iState=i_ready, cState=c_cl, clkCNT=2, pready=Z, penable=1, pwrite=0, paddr=0x10, pwdata=0x0, prdata=0xzzzz
+[870000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[870000] Reset Signals 
+[870000][GENERATOR] READ completed: Addr=0x10 Data=0x0
+[870000][GENERATOR] Sending WRITE: Addr=0x200 Data=0x5678
+[870000][SCOREBOARD] READ Addr=0x10 Expected=0x1234 Got=0x0
+[870000][DRIVER] Driving. Addr=0x200, WRITE WDATA=0x05678
+                 875ns : read: Bank=0x0, Row=0x00, Column=0x10, Data=0x1234
+                 890ns : Nop Command
+Memory= 1234 , Memory_read = 1234
+------------------------------------------------------------
+----------------------TEST PASS-----------------------------
+------------------------------------------------------------
+[890000][SIGNAL] sdr_A = fff
+[890000][APB] iState=i_ready, cState=c_rdata, clkCNT=0, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[890000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0x1234
+                 910ns : Nop Command
+Memory= 1234 , Memory_read = 1234
+------------------------------------------------------------
+----------------------TEST PASS-----------------------------
+------------------------------------------------------------
+[910000][SIGNAL] sdr_A = fff
+[910000][APB] iState=i_ready, cState=c_idle, clkCNT=1, pready=Z, penable=0, pwrite=1, paddr=0x200, pwdata=0x5678, prdata=0x1234
+[910000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[910000][SCOREBOARD] WRITE Addr=0x200 Data=0x5678
+                 930ns : Nop Command
+Memory= 1234 , Memory_read = 1234
+------------------------------------------------------------
+----------------------TEST PASS-----------------------------
+------------------------------------------------------------
+[930000][SIGNAL] sdr_A = fff
+[930000][APB] iState=i_ready, cState=c_idle, clkCNT=0, pready=Z, penable=1, pwrite=1, paddr=0x200, pwdata=0x5678, prdata=0x1234
+[930000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[930000][DRIVER] Done: Addr=0x200 WRITE WDATA=0x05678
+[930000][SCOREBOARD] WRITE Addr=0x200 Data=0x5678
+                 950ns : Nop Command
+Memory= 1234 , Memory_read = 1234
+------------------------------------------------------------
+----------------------TEST PASS-----------------------------
+------------------------------------------------------------
+[950000][SIGNAL] sdr_A = fff
+[950000][APB] iState=i_ready, cState=c_ACTIVE, clkCNT=0, pready=Z, penable=1, pwrite=1, paddr=0x200, pwdata=0x5678, prdata=0x1234
+[950000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[950000][SCOREBOARD] WRITE Addr=0x200 Data=0x5678
+                 970ns : Activate Command
+Memory= xxxx , Memory_read = xxxx
+------------------------------------------------------------
+----------------------TEST FAIL-----------------------------
+------------------------------------------------------------
+[970000][SIGNAL] sdr_A = 1
+[970000][APB] iState=i_ready, cState=c_WRITEA, clkCNT=0, pready=Z, penable=1, pwrite=1, paddr=0x200, pwdata=0x5678, prdata=0x1234
+[970000][SDR] sdr_WEn=1,sdr_A=0xz001, sdr_D  = 0xzzzz
+[970000][SCOREBOARD] WRITE Addr=0x200 Data=0x5678
+                 990ns : Write Command
+                 990ns :write: Bank=0x0, Row=0x01, Column=0x00, Data=0x5678
+[990000][SIGNAL] sdr_A = 400
+[990000][APB] iState=i_ready, cState=c_wdata, clkCNT=1, pready=Z, penable=1, pwrite=1, paddr=0x200, pwdata=0x5678, prdata=0x1234
+[990000][SDR] sdr_WEn=0,sdr_A=0xz400, sdr_D  = 0x5678
+[990000][SCOREBOARD] WRITE Addr=0x200 Data=0x5678
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'testbench_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:08 ; elapsed = 00:00:06 . Memory (MB): peak = 7756.832 ; gain = 94.172 ; free physical = 5512 ; free virtual = 37219
+run 100 ns
+                1010ns : Nop Command
+[1010000][SIGNAL] sdr_A = fff
+[1010000][APB] iState=i_ready, cState=c_tDAL, clkCNT=0, pready=Z, penable=1, pwrite=1, paddr=0x200, pwdata=0x5678, prdata=0x1234
+[1010000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[1010000] Reset Signals 
+[1010000][GENERATOR] WRITE completed: Addr=0x200 Data=0x5678
+[1010000][GENERATOR] Sending READ: Addr=0x200
+[1010000][SCOREBOARD] WRITE Addr=0x200 Data=0x5678
+[1010000][DRIVER] Driving. Addr=0x200,  READ RDATA=0x00000
+                1030ns : Nop Command
+[1030000][SIGNAL] sdr_A = fff
+[1030000][APB] iState=i_ready, cState=c_idle, clkCNT=1, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0x1234
+[1030000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+                1050ns : Nop Command
+[1050000][SIGNAL] sdr_A = fff
+[1050000][APB] iState=i_ready, cState=c_idle, clkCNT=0, pready=Z, penable=0, pwrite=0, paddr=0x200, pwdata=0x0, prdata=0x1234
+[1050000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[1050000][SCOREBOARD] READ Addr=0x200 Expected=0x5678 Got=0x1234
+                1070ns : Nop Command
+[1070000][SIGNAL] sdr_A = fff
+[1070000][APB] iState=i_ready, cState=c_idle, clkCNT=0, pready=Z, penable=1, pwrite=0, paddr=0x200, pwdata=0x0, prdata=0x1234
+[1070000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[1070000][DRIVER] Done: Addr=0x200  READ RDATA=0x01234
+[1070000][SCOREBOARD] READ Addr=0x200 Expected=0x5678 Got=0x1234
+                1090ns : Nop Command
+[1090000][SIGNAL] sdr_A = fff
+[1090000][APB] iState=i_ready, cState=c_ACTIVE, clkCNT=0, pready=Z, penable=1, pwrite=0, paddr=0x200, pwdata=0x0, prdata=0x1234
+[1090000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[1090000][SCOREBOARD] READ Addr=0x200 Expected=0x5678 Got=0x1234
+run 100 ns
+                1110ns : Activate Command
+[1110000][SIGNAL] sdr_A = 1
+[1110000][APB] iState=i_ready, cState=c_READA, clkCNT=0, pready=Z, penable=1, pwrite=0, paddr=0x200, pwdata=0x0, prdata=0x1234
+[1110000][SDR] sdr_WEn=1,sdr_A=0xz001, sdr_D  = 0xzzzz
+[1110000][SCOREBOARD] READ Addr=0x200 Expected=0x5678 Got=0x1234
+                1130ns : Read Command
+[1130000][SIGNAL] sdr_A = 400
+[1130000][APB] iState=i_ready, cState=c_cl, clkCNT=1, pready=Z, penable=1, pwrite=0, paddr=0x200, pwdata=0x0, prdata=0xzzzz
+[1130000][SDR] sdr_WEn=1,sdr_A=0xz400, sdr_D  = 0xzzzz
+[1130000][SCOREBOARD] READ Addr=0x200 Expected=0x5678 Got=0x0
+                1150ns : Nop Command
+[1150000][SIGNAL] sdr_A = fff
+[1150000][APB] iState=i_ready, cState=c_cl, clkCNT=2, pready=Z, penable=1, pwrite=0, paddr=0x200, pwdata=0x0, prdata=0xzzzz
+[1150000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+[1150000] Reset Signals 
+[1150000][GENERATOR] READ completed: Addr=0x200 Data=0x1234
+[1150000][GENERATOR] All transactions completed
+[1150000][SCOREBOARD] READ Addr=0x200 Expected=0x5678 Got=0x0
+                1155ns : read: Bank=0x0, Row=0x01, Column=0x00, Data=0x5678
+                1170ns : Nop Command
+Memory= 5678 , Memory_read = 5678
+Memory= 5678 , Memory_read = 5678
+------------------------------------------------------------
+----------------------TEST PASS-----------------------------
+------------------------------------------------------------
+[1170000][SIGNAL] sdr_A = fff
+[1170000][APB] iState=i_ready, cState=c_rdata, clkCNT=0, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0xzzzz
+[1170000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0x5678
+                1190ns : Nop Command
+Memory= 5678 , Memory_read = 5678
+Memory= 5678 , Memory_read = 5678
+------------------------------------------------------------
+----------------------TEST PASS-----------------------------
+------------------------------------------------------------
+[1190000][SIGNAL] sdr_A = fff
+[1190000][APB] iState=i_ready, cState=c_idle, clkCNT=1, pready=Z, penable=0, pwrite=0, paddr=0x0, pwdata=0x0, prdata=0x5678
+[1190000][SDR] sdr_WEn=1,sdr_A=0xzfff, sdr_D  = 0xzzzz
+
