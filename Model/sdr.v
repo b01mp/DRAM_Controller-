@@ -1,5 +1,9 @@
 `timescale 1ns/100ps
 
+/**********************
+SIMULATION MODEL ONLY
+***********************/
+
 module sdr (
   sdr_DQ,        // sdr data
   sdr_A,         // sdr address
