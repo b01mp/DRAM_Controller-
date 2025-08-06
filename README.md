@@ -318,6 +318,6 @@ This example illustrates how the FIFO decouples the APB command rate from SDRAM 
 
 *This project demonstrates advanced digital design concepts including FIFO implementation, SDRAM controller design, UVM testbench development, and APB protocol implementation.* 
 
-![Example Output Waveform](images/output)
+![Example Output Waveform](images/output.jpg)
 
 *Figure: Output waveform showing FIFO command buffering and execution for the described operation sequence.* 
